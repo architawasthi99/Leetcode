@@ -1,0 +1,36 @@
+1} BRUTE FORCE:->
+
+#include <bits/stdc++.h>
+using namespace std;
+class Solution{
+public:
+    void rotateArray(vector<int>&arr){
+        int n=arr.size();
+        int last=arr[n-1];
+        for(int i=n-1;i>0;i--){
+            arr[i]=arr[i-1];
+        }
+        arr[0]=last;
+    }
+    int calculatesum(vector<int>&nums){
+        int n=nums.size();
+        int ans=INT_MIN;
+        vector<int>temp=nums;
+        for(int k=0;k<n;k++){
+            int curr=0;
+            for(int i=0;i<n;i++){
+                curr+=i*temp[i];
+            }
+            ans=max(curr,ans);
+            rotateArray(temp);
+        }
+        return ans;
+    }    
+};
+int main(){
+    Solution obj;
+    vector<int>nums={3,4,2,6};
+    int result=obj.calculatesum(nums);
+    cout<<result<<endl;
+    return 0;
+}
