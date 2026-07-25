@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+int product(int n){
+    string s=to_string(n);
+    int first=0;
+    int second=0;
+    for(char ch : s){
+        int digit=ch-'0';
+        if(digit>first){
+            second=first;
+            first=digit;
+        }
+        else if(digit>second){
+            second=digit;
+        }
+    }
+    return second*first;
+}
+int main(){
+    int n;
+    cout<<"enter the value of n: ";
+    cin>>n;
+    cout<<product(n)<<endl;
+    return 0;
+}
