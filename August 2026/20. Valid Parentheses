@@ -1,0 +1,43 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+
+class Solution {
+public:
+    bool isValid(string s) {
+        int i=0;
+        stack<char>st;
+        while(i<s.length()){
+            if(s[i]=='(' || s[i]=='[' || s[i]=='{'){
+                st.push(s[i]);
+            }
+            else{
+                if(st.empty()){
+                    return false;
+                }
+                if(s[i]== ')' && st.top()=='('){
+                st.pop();
+                }
+                else if(s[i]== '}' && st.top()=='{'){
+                st.pop();
+                }
+                else if(s[i]== ']' && st.top()=='['){
+                st.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+            i++;
+        }
+        return st.empty();
+    }
+};
+int  main(){
+    Solution s1;
+    cout<<s1.isValid("({[[[[[[[[]]]]]]]]})");
+    return 0;
+}
+
+
+
