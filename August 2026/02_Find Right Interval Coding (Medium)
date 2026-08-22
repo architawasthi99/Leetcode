@@ -1,0 +1,38 @@
+2. Find Right Interval Coding (Medium)
+
+You are given an array of intervals, where intervals[i] = [start_i, end_i] and each start_i is unique.
+The right interval for an interval i is an interval j such that start_j >= end_i and start_j is minimized. Note that i may equal j.
+Return an array of right interval indices for each interval i. If no right interval exists, put -1 at index i.
+Example 1: Input: intervals = [[1,2]] | Output: [-1]
+Example 2: Input: intervals = [[3,4],[2,3],[1,2]] | Output: [-1,0,1]
+Explanation: The right interval for [2,3] is [3,4] since start_0 = 3 is the smallest start >= end_1 = 3.
+
+//BRUTE FORCE
+#include<iostream>
+#include<vector>
+#include<climits>
+using namespace std;
+void interval(vector<vector<int>>arr){
+    vector<int>result;
+    for(int i=0;i<arr.size();i++){
+        int min_value=INT_MAX;
+        int index=-1;
+        for(int j=0;j<arr.size();j++){
+            if(arr[j][0]>=arr[i][1]){
+                if(arr[j][0]<min_value){
+                    min_value=arr[j][0];
+                    index=j;
+                }
+            }
+        }
+        result.push_back(index);
+    }
+    for(int x:result){
+        cout<<x<<" ";
+    }
+}
+int main(){
+    vector<vector<int>>arr={{3,4},{2,3},{1,2}};
+    interval(arr);
+    return 0;
+}
